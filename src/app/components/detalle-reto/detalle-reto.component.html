@@ -1,0 +1,51 @@
+  <div class="row">
+    <div class="col-md-6">
+      <a routerLink="/miMuro" href="#" class="btn btn-link">
+        <i class="fa fa-arrow-circle-o-left"></i> Regresar
+      </a>
+    </div>
+    <div *ngIf="!esJugado" class="col-md-6">
+      <div class="btn-group pull-right">
+        <a [routerLink]="['/editarReto/'+id]" class="btn btn-dark">Editar</a>
+        <button class="btn btn-danger" (click)="eliminarReto()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="card">
+    <div class="card-header">
+      Detalle Reto
+    </div>
+    <div class="card-body">
+      <div class="form-group" >
+        <label for="name">Retador</label>
+        <input type="text" class="form-control"  [(ngModel)]="reto.retadorNombre"  readonly="readonly">
+      </div>
+      <div class="form-group" >
+        <label for="name">Reta a</label>
+        <input type="text" class="form-control"  [(ngModel)]="reto.retadoNombre"  readonly="readonly">
+      </div>
+      <div class="form-group">
+        <label for="difPuestos">Diferencia de Puestos</label>
+        <input type="number" class="form-control" [(ngModel)] = "reto.difPuestos" readonly="readonly">
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha y Hora (AM/PM)</label>
+        <input type="text" class="form-control" value="{{reto.fecha | date:'dd-MM-yy HH:mm'}}" readonly="readonly">
+      </div>
+      <div class="form-group">
+        <label for="Sede">Sede</label>
+        <input type="text" class="form-control"  [(ngModel)]="reto.sede" readonly="readonly">
+      </div>
+      <div *ngIf="esJugado" class="form-group">
+          <label for="vencedor">Vencedor</label>
+          <input type="text" class="form-control"  [(ngModel)]="reto.vencedorNombre" readonly="readonly">
+      </div>
+      <div *ngIf="esJugado" class="form-group">
+          <label for="scoreFinal">Score Final</label>
+          <input type="text" class="form-control" value="{{reto.scoreVencedor + ' - ' + reto.scorePerdedor }}" readonly>
+      </div>
+      <app-resultado-detalle *ngIf="esJugado"></app-resultado-detalle>
+    </div>
+  </div>
+

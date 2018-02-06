@@ -1,0 +1,120 @@
+
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/miMuro" href="#" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Regresar
+    </a>
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+<hr>
+<div class="card">
+  <div class="card-header">
+    <h5>Datos del Reto</h5>
+  </div>
+  <div class="card-body">
+    <div class="form-group" >
+      <label for="name">Retador</label>
+      <input type="text" class="form-control"  [(ngModel)]="reto.retadorNombre"  readonly>
+    </div>
+    <div class="form-group" >
+      <label for="name">Reta a</label>
+      <input type="text" class="form-control"  [(ngModel)]="reto.retadoNombre"  readonly>
+    </div>
+    <!--
+    <div class="form-group">
+      <label for="difPuestos">Diferencia de Puestos</label>
+      <input type="number" class="form-control" [(ngModel)] = "reto.difPuestos" readonly>
+    </div>
+    <div class="form-group">
+      <label for="fecha">Fecha y Hora (AM/PM)</label>
+      <input type="text" class="form-control" value="{{reto.fecha | date:'dd-MM-yy HH:mm'}}" readonly>
+    </div>
+  -->
+    <div class="form-group">
+      <label for="Sede">Sede</label>
+      <input type="text" class="form-control"  [(ngModel)]="reto.sede" readonly>
+    </div>
+  </div>
+</div>
+<hr>
+<div >
+  <!--
+  <form class="form-inline">
+      <input type="text" class="form-control mb-2 mr-sm-2" id="set" placeholder="1er Set" readonly>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="vencedor" placeholder="Vencedor">
+      <input type="text" class="form-control mb-2 mr-sm-2" id="perdedor" placeholder="Perdedor">
+      <input type="number" class="form-control mb-2 mr-sm-2" id="scoreVencedor" placeholder="Score Vencedor">
+      <input type="number" class="form-control mb-2 mr-sm-2" id="scorePerdedor" placeholder="Score Perdedor">
+      <button type="submit" class="btn btn-primary mb-2">Submit</button>
+  </form>
+-->
+<div class="card">
+  <div class="card-header">
+    <h5>Ingrese resultados</h5>
+  </div>
+  <div class="card-body">
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="set">Set</label>
+            <input type="number" class="form-control" id="set" [(ngModel)]="set" name="set" readonly>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="vencedor">Vencedor</label>
+          <select id="vencedor" class="form-control" [(ngModel)] = "vencedor" name="vencedor">
+              <option [value]="jugadores[0]?.email" selected>{{jugadores[0]?.nombre}} </option>
+              <option [value]="jugadores[1]?.email">{{jugadores[1]?.nombre}} </option>
+              <!--<option *ngFor="let jugador of jugadores" [value]="jugador.email">{{jugador.nombre}}</option>-->
+            </select>
+        </div>
+        <!--
+        <div class="form-group col-md-3">
+          <label for="perdedor">Perdedor</label>
+          <select id="perdedor" class="form-control" [(ngModel)] = "perdedor" name="perdedor">
+            <option [value]="jugadores[1]?.email" selected>{{jugadores[1]?.nombre}} </option>
+            <option [value]="jugadores[0]?.email">{{jugadores[0]?.nombre}} </option>        </select>
+        </div>
+      -->
+        <div class="form-group col-md-2">
+          <label for="scoreVencedor">Score Vencedor</label>
+          <input type="number" class="form-control" id="scoreVencedor" [(ngModel)] = "scoreVencedor" name="scoreVencedor">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="scorePerdedor">Score Perdedor</label>
+          <input type="number" class="form-control" id="scorePerdedor" [(ngModel)] = "scorePerdedor" name="scorePerdedor">
+        </div>
+        <div class="form-group col-md-1">
+            <label for="scorePerdedor">.</label>
+            <button type="submit" class="btn btn-primary form-control">Registrar</button>
+          </div>
+      </div>
+    </form>
+    <app-resultado-detalle></app-resultado-detalle>
+  </div>    
+</div>
+<hr>
+<div class="card">
+    <div class="card-header">
+      <h5>Resultado Final</h5>
+    </div>
+    <div class="card-body">
+      <div class=" alert alert-success " role="alert" >
+          <label for="vencedor">Vencedor</label>
+          <input type="text" class="form-control"  [(ngModel)]="reto.vencedorNombre" readonly>
+      </div>
+      <div class="alert alert-success" role="alert">
+          <label for="scoreFinal">Score Final</label>
+          <input type="text" class="form-control" value="{{reto.scoreVencedor + ' - ' + reto.scorePerdedor }}" readonly>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="cold-md-2">
+              <button class="btn btn-success form-control" (click)="finalizarReto()">Finalizar Reto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<div>

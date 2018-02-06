@@ -1,0 +1,20 @@
+<table class="table table-striped" >
+  <thead>
+    <tr>
+      <th scope="col">Set</th>
+      <th scope="col" >Vencedor</th>
+      <th scope="col">Perdedor</th>
+      <th scope="col">Score Vencedor</th>
+      <th scope="col">Score Perdedor</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor = "let resultado of resultados">
+          <td scope="row">{{resultado.set}}</td>
+          <td>{{resultado.vencedorNombre}}</td>
+          <td>{{resultado.perdedorNombre}}</td>
+          <td>{{resultado.scoreVencedor}}</td>
+          <td>{{resultado.scorePerdedor}}</td>
+      </tr>
+  </tbody>
+</table>
